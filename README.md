@@ -1,24 +1,22 @@
 ## css flexblox, position
 
-## flexbox
+## position
 
-- 웹의 크기에 맡게 하위 요소가 변경된
+```css
+position: absolute;
+top: 20px;
+left: 20px;
+```
 
-  display: flex;
+relative를 가지고 있는 가장 가까운 상위 컴포넌트를 기준으로 위치한다.
 
-- 콘텐츠의 위치를 가로축을 기준으로 정렬
+```css
+position: fixed;
+bottom: 30px;
+right: 30px;
+display: flex;
+justify-content: center;
+align-items: center;
+```
 
-  justify-content: center;
-
-- 세로축을 기준으로 나열
-
-  align-items: start;
-
-- 콘텐츠 세로 방향
-
-  flex-direction: column;
-
-  - row
-  - row-reverse
-  - column
-  - column-reverse
+fixed는 화면이 스크롤로 내려가도 그 위치에 고정하는 속성이다.

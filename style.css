@@ -1,17 +1,29 @@
-body {
-  /* 웹의 크기에 맡게 하위 요소가 변경된 */
-  display: flex;
-  /* 콘텐츠의 위치를 가로축을 기준으로 정렬*/
+main {
+  width: 200px;
+  height: 1500px;
+  border: 2px solid black;
+  /* flex 방식 */
+  /* display: flex;
   justify-content: center;
-  /* 세로축을 기준으로 나열 */
-  align-items: start;
-  /* 콘텐츠 세로 방향 */
-  flex-direction: column;
+  align-items: center; */
+
+  /* relative옵션을 가져야지 하위 태그가 해당 태그를 기준으로 움직인다. */
+  /* position: relative; */
 }
+
 div {
-  /* 1자로 배치 시킬 수 있다. */
-  background-color: yellowgreen;
-  margin: 5px;
   width: 50px;
   height: 50px;
+  background-color: tomato;
+  /* position 방식 */
+  /* main이 아닌 body영역을 기준으로 자리한다. */
+  /* relative를 기준으로 위치한다. */
+
+  /* position: absolute; */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
