@@ -3,4 +3,5 @@
 ### Css 박스모델
 
 - 바깥쪽공간 : margin
--
+- 내부 공간 : padding
+- 테두리 : border
