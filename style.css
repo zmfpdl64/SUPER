@@ -1,6 +1,14 @@
 div {
-  background-color: blue;
-  font-size: 40px;
+  /* 반대로 div는 block옵션을 가지고 있다. */
+  /* display: inline; */
   width: 100px;
   height: 100px;
+  background-color: aqua;
+}
+span {
+  /* 인라인 block으로 바꿔주면 block 속성으로 변경 */
+  /* display: inline-block; */
+  width: 100px;
+  height: 100px;
+  background-color: blueviolet;
 }
