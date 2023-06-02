@@ -1,55 +1,58 @@
-## 선택자(selector)
+## 색상과 애니메이션
 
-- Element명으로 선택
+- transition
+  - roatate (회전)
+  - translate (이동)
+  - scale (크기)
 
 ```css
-/* 태그로 찾기  */
-div {
-  background-color: blue;
+div:hover img {
+  width: 200px;
+  transform: all 2s rotateX(360deg); /* 해당 객체 360도 회전 */
+}
+div:hover img {
+  width: 200px;
+  transform: translateX(100px); /* 100px 이동 */
+}
+div:hover img {
+  width: 200px;
+  transform: scale(2); /*2배로 커짐*/
 }
 ```
 
-- Class, ID로 선택
-  - `.` 클래스
-  - `#` ID
+- animation
 
 ```css
-/* 클래스로 찾기  */
-.btn {
-  background-color: blue;
+img {
+  animation: move;
 }
 
-/* id로 찾기  */
-#btn {
-  background-color: blue;
+@keyframes move {
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(3);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 ```
 
-- Pseudo Selector (가상 선택자)
+animation 인자에 변수를 넣어주면 태그에 애니메이션이 적용된다.
 
-[pseudo selector mdn Document](https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-classes)
+- 반응형 미디어 쿼리
 
-nth-child
-
-```css
-
-tag:nth-child(2)
-tag:nth-child(odd)
-tag:nth-child(even)
-tag:nth-child(n+4)  /* 4번째 부터 그 이후*/
-tag:nth-child(3n-1)
-```
-
-active, focus, hover, visited
+[media query mdn document](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_media_queries/Using_media_queries)
 
 ```css
-/* 클릭 누르고 있을 때 */
-tag:active
-/* 마우스를 올려놓았을 때 */
-tag:hover
-/* 방문한 링크일 떄 */
-a:visited
-/* input태그 선택시 */
-input:focus
-
+@media screen and (max-width: 800px) {
+  div {
+    opacity: 0;
+  }
+  #info-msg {
+    opacity: 1;
+  }
+}
 ```
