@@ -1,29 +1,36 @@
+div {
+  margin: 5px;
+}
 main {
-  width: 200px;
-  height: 1500px;
-  border: 2px solid black;
-  /* flex 방식 */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-
-  /* relative옵션을 가져야지 하위 태그가 해당 태그를 기준으로 움직인다. */
-  /* position: relative; */
+  margin: 5px;
 }
 
-div {
-  width: 50px;
-  height: 50px;
-  background-color: tomato;
-  /* position 방식 */
-  /* main이 아닌 body영역을 기준으로 자리한다. */
-  /* relative를 기준으로 위치한다. */
+button {
+  border: none;
+  outline: none;
+  color: white;
+  background-color: black;
+  padding: 5px 10px 5px 10px;
+  font-size: 10px;
+  border-radius: 5px;
+}
 
-  /* position: absolute; */
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+a:visited {
+  color: black;
+}
+input:focus {
+  background-color: blueviolet;
+}
+div > button:nth-child(3):hover {
+  border: none;
+  outline: none;
+  color: white;
+  background-color: blue;
+  padding: 5px 10px 5px 10px;
+  font-size: 10px;
+  border-radius: 5px;
+}
+
+.btn {
+  background-color: aqua;
 }
