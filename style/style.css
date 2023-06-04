@@ -18,12 +18,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
 }
 
 @media screen and (min-width: 380px) {
   .media-info-msg {
     width: 100%;
     height: 100%;
+    opacity: 1;
     background-color: var(--button-primary);
   }
 }
