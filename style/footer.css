@@ -2,7 +2,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   width: 100vw;
   position: fixed;
   bottom: 0;
@@ -17,11 +16,18 @@ footer {
   padding: 5px 10px 5px 10px;
   border: 1px solid 1;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .navbar-element img {
   width: 30px;
+  transition: all 0.2s ease-in-out;
 }
+
+.navbar-element:hover img {
+  transform: translateY(-10px);
+}
+
 .navbar-element span {
   font-size: 8px;
   font-weight: bold;

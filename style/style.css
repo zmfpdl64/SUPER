@@ -3,21 +3,27 @@
 @import "main.css";
 @import "footer.css";
 
+:root {
+  --button-primary: salmon;
+  --button-hover: rgba(250, 128, 114, 0.8);
+  --footer-background-color: white;
+}
+
 .media-info-msg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 0;
+  height: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
 }
 
 @media screen and (min-width: 380px) {
   .media-info-msg {
-    opacity: 1;
-    background-color: salmon;
+    width: 100%;
+    height: 100%;
+    background-color: var(--button-primary);
   }
 }
