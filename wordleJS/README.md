@@ -30,4 +30,20 @@ function change() {
 timeclass.addEventListener("mouseover", change);
 ```
 
-- 주의사항 함수명만을 정의해야 하며 ()를 붙히게 되면 실행이된다.
+### 주의사항
+
+- 함수명만을 정의해야 하며 ()를 붙히게 되면 실행이된다.
+
+### 이벤트 함수
+
+```javascript
+click;
+mouseover;
+mouseleave;
+mouseup;
+mousedown;
+scroll;
+keydown;
+keyup;
+keypress;
+```
