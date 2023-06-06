@@ -1,39 +1,53 @@
+/** 전체 index, row index */
 let total = 0;
 let index = 0;
+/** 정답, 입력 정답 */
 const answer = "ABCDE";
-
+let ins = "";
+/** 특수 값 */
 const back = "BACKSPACE";
 const enter = "ENTER";
-let str = "";
-
+/** 정답 확인 상수 */
 const notExist = 0;
 const contain = 1;
 const correct = 2;
-
+/** 정답, 보유, 보유x 색깔 */
 const notExistColor = "#3A3A3C";
 const containColor = "#b59f3b";
 const correctColor = "#538D4E";
-
+/** 아스키 코드 */
 const alphaMax = 90;
 const alphaMin = 65;
-const colMax = 5;
+/** 해당 문제 row, col 상수 */
+const maxCol = 5;
+const col_len = 5;
+const row_len = 6;
+const maxIndex = col_len * row_len;
 
+/**
+ *
+ * @param {인덱스} idx
+ * @returns
+ */
 function selectDom(idx) {
   return document.querySelector(`.board-block[data-index='${idx}']`);
 }
+function selectKeyDom(key) {
+  return document.querySelector(`.keyboard-block[data-key='${key}'`);
+}
 function inputAlpha(key, code, cur_idx) {
-  if (alphaMin <= code && code <= alphaMax && index < colMax) {
+  if (alphaMin <= code && code <= alphaMax && index < maxCol) {
     const domBlock = selectDom(cur_idx);
     domBlock.innerText = key;
-    str += key;
+    ins += key;
     index++;
-    console.log(str);
+    console.log(ins);
     return true;
   }
   return false;
 }
 function isEnter(key) {
-  if (key === "ENTER" && index === colMax) {
+  if (key === "ENTER" && index === maxCol) {
     total += index;
     index = 0;
     return true;
@@ -43,7 +57,7 @@ function isEnter(key) {
 
 function isDelete(key, cur_idx) {
   if (key === "BACKSPACE" && index > 0) {
-    str = str.slice(0, -1);
+    ins = ins.slice(0, -1);
     selectDom(cur_idx - 1).innerText = "";
     index -= 1;
     return true;
@@ -61,38 +75,49 @@ function returnResult(inputs) {
       result.push(notExist);
     }
   }
-  str = "";
+  ins = "";
   console.log(result);
   return result;
 }
 
-/**
- * const notExist = 0;
- * const contain = 1;
- * const correct = 2;
- */
-
 function changeCss(result) {
   let idx = total - result.length;
+  let count = 0;
   for (let i = 0; i < result.length; i++) {
     const result_v = result[i];
     const dom = selectDom(idx);
+    const keyDom = selectKeyDom(dom.innerText);
     console.log(dom);
     if (result_v === contain) {
       dom.style.background = containColor;
+      keyDom.style.background = containColor;
     } else if (result_v === correct) {
       dom.style.background = correctColor;
+      keyDom.style.background = correctColor;
+      count++;
     } else {
       dom.style.background = notExistColor;
+      keyDom.style.background = notExistColor;
     }
     idx++;
   }
+  if (count === result.length) {
+    return true;
+  }
+  return false;
 }
-/**
- * - [x] 해당 알파뱃 가질 때
- * - [x] 알파뱃 자리 일치할 때
- * - [ ] 결과를 확인하고 해당 css 변경
- */
+function alertMessage(bool) {
+  if (bool) {
+    setTimeout(() => {
+      alert("정답입니다!!");
+    }, 100);
+    return;
+  }
+  setTimeout(() => {
+    alert("틀렸습니다...");
+  }, 100);
+  return;
+}
 const app = () => {
   const handleKeydown = (e) => {
     const key = e.key.toUpperCase();
@@ -102,9 +127,16 @@ const app = () => {
       return;
     }
     if (isEnter(key)) {
-      const result = returnResult(str);
-      changeCss(result);
-      return;
+      const result = returnResult(ins);
+      if (changeCss(result)) {
+        alertMessage(true);
+        return;
+      }
+      console.log(total, maxIndex);
+      if (total === maxIndex) {
+        alertMessage(false);
+        return;
+      }
     }
     if (isDelete(key, cur_idx)) {
       return;
