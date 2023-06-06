@@ -1,38 +1,38 @@
 footer {
-    display: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 40px;
+  display: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 .keyboard-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .keyboard-block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.25em;
-    font-weight: bold;
-    border: 0;
-    height: 58px;
-    width: 40px;
-    margin: 2px;
-    border-radius: 4px;
-    color: var(--keyboard-color);
-    background-color: var(--keyboard-backgourndcolor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25em;
+  font-weight: bold;
+  border: 0;
+  height: 58px;
+  width: 40px;
+  margin: 2px;
+  border-radius: 4px;
+  color: var(--keyboard-color);
+  background-color: var(--keyboard-backgourndcolor);
 }
 
 .special {
-    font-size: 0.8em;
-    width: 60px;
+  font-size: 0.8em;
+  width: 60px;
 }
 
 .del img {
-    width: 25px;
-    filter: invert(100%);
+  width: 25px;
+  filter: invert(100%);
 }

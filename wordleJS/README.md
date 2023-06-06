@@ -5,3 +5,7 @@
 ```css
 flex-grow: 2;
 ```
+
+```javascript
+const thisBlock = document.querySelector(".board-block[data-index]");
+```
