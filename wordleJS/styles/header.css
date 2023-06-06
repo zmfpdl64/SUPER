@@ -2,18 +2,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: nowrap;
+    height: 50px;
+    padding: 5px 0 5px 0;
     position: relative;
-    border: 1px solid var(--line-color);
-    padding: 10px 0px 10px 0px;
-    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line-color);
 }
 
 .AppHeader__left {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    position: absolute;
-    left: 20px;
+    flex-grow: 2.8;
+    padding-left: 20px;
 }
 
 .AppHeader__left img {
@@ -24,6 +25,8 @@
     display: flex;
     justify-items: center;
     align-items: center;
+    flex-grow: 2;
+    position: relative;
     font-size: 28px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
@@ -31,10 +34,9 @@
 
 .AppHeader__right {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    position: absolute;
-    right: 20px;
+    padding-right: 20px;
 }
 
 .AppHeader__right img {

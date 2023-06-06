@@ -1,7 +1,7 @@
 @import "header.css";
 @import "main.css";
 @import "footer.css";
-/* @import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"); */
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css");
 
 :root {
     --line-color: rgb(58, 58, 60);
@@ -13,5 +13,5 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 0px;
+    gap: 40px;
 }
