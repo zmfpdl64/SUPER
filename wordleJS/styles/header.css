@@ -1,0 +1,49 @@
+.AppHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid var(--line-color);
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 40px;
+}
+
+.AppHeader__left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    left: 20px;
+}
+
+.AppHeader__left img {
+    width: 30px;
+}
+
+.AppHeader__title {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.AppHeader__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+}
+
+.AppHeader__right img {
+    padding: 2px;
+    width: 30px;
+}
+
+.AppHeader__right__Subscribe {
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #3a3a3c;
+    border-radius: 20px;
+}
