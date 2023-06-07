@@ -2,7 +2,7 @@
 let total = 0;
 let index = 0;
 /** 정답, 입력 정답 */
-const answer = "ABCDE";
+const answer = "RAMEN";
 let ins = "";
 /** 특수 값 */
 const back = "BACKSPACE";
