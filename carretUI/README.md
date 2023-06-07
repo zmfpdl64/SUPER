@@ -1,4 +1,4 @@
-## 당근마켓 UI작성
+## 🥕당근마켓 UI작성
 
 - [basic style 삭제 라이브러리](https://meyerweb.com/eric/tools/css/reset/)
 - [아이콘 사이트](https://heroicons.com/)
