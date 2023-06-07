@@ -25,6 +25,11 @@ footer {
   border-radius: 4px;
   color: var(--keyboard-color);
   background-color: var(--keyboard-backgourndcolor);
+  transition: all 0.5s ease-in-out;
+}
+
+.keyboard-block:hover {
+  transform: scale(1.2);
 }
 
 .special {

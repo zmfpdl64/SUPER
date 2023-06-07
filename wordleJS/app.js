@@ -29,6 +29,7 @@ const maxIndex = col_len * row_len;
  * @param {인덱스} idx
  * @returns
  */
+
 function selectDom(idx) {
   return document.querySelector(`.board-block[data-index='${idx}']`);
 }
@@ -87,7 +88,6 @@ function changeCss(result) {
     const result_v = result[i];
     const dom = selectDom(idx);
     const keyDom = selectKeyDom(dom.innerText);
-    console.log(dom);
     if (result_v === contain) {
       dom.style.background = containColor;
       keyDom.style.background = containColor;
@@ -109,19 +109,79 @@ function changeCss(result) {
 function alertMessage(bool) {
   if (bool) {
     setTimeout(() => {
-      alert("정답입니다!!");
+      const div = document.createElement("div");
+      div.innerText = "정답입니다!!";
+      div.classList.add("smessage");
+      div.classList.add("rotate");
+      document.body.appendChild(div);
     }, 100);
     return;
   }
   setTimeout(() => {
-    alert("틀렸습니다...");
+    const div = document.createElement("div");
+    div.innerText = "틀렸습니다..";
+    div.classList.add("fmessage");
+    div.classList.add("rotate");
+    document.body.appendChild(div);
   }, 100);
   return;
 }
+
 const app = () => {
-  const handleKeydown = (e) => {
-    const key = e.key.toUpperCase();
-    const code = e.keyCode;
+  const startTimer = () => {
+    const startTime = new Date();
+    function setTime() {
+      const timeInterval = setInterval(timeCheck(startTime), 1000);
+      return timeInterval;
+    }
+    return setInterval(setTime, 1000);
+  };
+  const timeCheck = (startTime) => {
+    const timeDom = document.querySelector(".time");
+    const passedTime = new Date(new Date() - startTime);
+    timeDom.innerText =
+      "time: " +
+      timeFormat(passedTime.getMinutes()) +
+      ":" +
+      timeFormat(passedTime.getSeconds());
+  };
+
+  const timeFormat = (s) => {
+    return s.toString().padStart(2, "0");
+  };
+
+  const gameover = (id) => {
+    endTime(id);
+    window.removeEventListener("keydown", playingWordle);
+  };
+  const endTime = (id) => {
+    clearInterval(id);
+  };
+
+  const handleClick = (e) => {
+    let key = e.target.dataset.key;
+    let code;
+    try {
+      code = e.target.dataset.key.charCodeAt(0);
+    } catch {
+      code = 0;
+    }
+
+    return [key, code];
+  };
+
+  const playingWordle = (e) => {
+    let key;
+    let code;
+    if (e.pointerType === "mouse") {
+      const ans = handleClick(e);
+      key = ans[0];
+      code = ans[1];
+    } else {
+      key = e.key.toUpperCase();
+      code = e.keyCode;
+    }
+
     let cur_idx = total + index;
     if (inputAlpha(key, code, cur_idx)) {
       return;
@@ -130,11 +190,13 @@ const app = () => {
       const result = returnResult(ins);
       if (changeCss(result)) {
         alertMessage(true);
+        document.querySelector("main").classList.add("success");
+        gameover(intervalId);
         return;
       }
-      console.log(total, maxIndex);
       if (total === maxIndex) {
         alertMessage(false);
+        gameover(intervalId);
         return;
       }
     }
@@ -142,7 +204,9 @@ const app = () => {
       return;
     }
   };
-  window.addEventListener("keydown", handleKeydown);
+  const intervalId = startTimer();
+  document.addEventListener("click", playingWordle);
+  window.addEventListener("keydown", playingWordle);
 };
 
 app();
