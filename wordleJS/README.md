@@ -1,6 +1,6 @@
 ### Wordle
 
-[배포 사이트](https://647ff6587fbf06254b6518fb--woodle.netlify.app/)
+[배포 사이트](https://woodle.netlify.app)
 
 ### 유용한 옵션
 
