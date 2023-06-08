@@ -2,8 +2,9 @@
 let total = 0;
 let index = 0;
 /** 정답, 입력 정답 */
-const answer = "RAMEN";
+// const answer = "RAMEN";
 let ins = "";
+const ans = [];
 /** 특수 값 */
 const back = "BACKSPACE";
 const enter = "ENTER";
@@ -23,7 +24,6 @@ const maxCol = 5;
 const col_len = 5;
 const row_len = 6;
 const maxIndex = col_len * row_len;
-
 /**
  *
  * @param {인덱스} idx
@@ -65,8 +65,18 @@ function isDelete(key, cur_idx) {
   }
   return false;
 }
-function returnResult(inputs) {
+async function returnResult(inputs) {
   const result = [];
+  let answer;
+  if (ans.length === 0) {
+    const res = await fetch("/answer");
+    answer = await res.json();
+    ans.push(answer);
+  } else {
+    answer = ans[0];
+  }
+
+  console.log(answer, inputs);
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i] === answer[i]) {
       result.push(correct);
@@ -77,7 +87,6 @@ function returnResult(inputs) {
     }
   }
   ins = "";
-  console.log(result);
   return result;
 }
 
@@ -166,7 +175,6 @@ const app = () => {
     } catch {
       code = 0;
     }
-
     return [key, code];
   };
 
@@ -187,18 +195,22 @@ const app = () => {
       return;
     }
     if (isEnter(key)) {
-      const result = returnResult(ins);
-      if (changeCss(result)) {
-        alertMessage(true);
-        document.querySelector("main").classList.add("success");
-        gameover(intervalId);
-        return;
-      }
-      if (total === maxIndex) {
-        alertMessage(false);
-        gameover(intervalId);
-        return;
-      }
+      returnResult(ins)
+        .then((res) => {
+          const result = res;
+          if (changeCss(result)) {
+            alertMessage(true);
+            document.querySelector("main").classList.add("success");
+            gameover(intervalId);
+            return;
+          }
+          if (total === maxIndex) {
+            alertMessage(false);
+            gameover(intervalId);
+            return;
+          }
+        })
+        .catch();
     }
     if (isDelete(key, cur_idx)) {
       return;
