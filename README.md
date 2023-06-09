@@ -6,4 +6,6 @@
 
 [Wordle 사이트 주소](https://woodle.netlify.app)
 
-##
+## 📝[MemoPy](/MemoPy/README.md)
+
+[Memo 사이트 주소](https://woomo-1-e8884847.deta.app/memo/)
