@@ -1,9 +1,11 @@
 const handleSubmitForm = async (e) => {
   e.preventDefault();
+  const body = new FormData(form);
+  body.append("created_at", new Date().getTime());
   try {
     const res = await fetch("/items", {
       method: "POST",
-      body: new FormData(form),
+      body: body,
     });
     const data = await res.json();
     if (data === "200") {
