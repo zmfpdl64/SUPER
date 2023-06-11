@@ -43,14 +43,13 @@ const appendItem = async (item) => {
 
   const item_img = document.createElement("div");
   const img = document.createElement("img");
+  console.log(item.id);
   const res = await fetch(`/images/${item.id}`, {
     method: "GET",
   });
   const blob = await res.blob();
   const url = URL.createObjectURL(blob);
   img.src = url;
-
-  //   img.src =
   item_img.classList.add("item-list__img");
   item_img.appendChild(img);
 
