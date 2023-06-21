@@ -2,9 +2,9 @@
 let total = 0;
 let index = 0;
 /** 정답, 입력 정답 */
-// const answer = "RAMEN";
+let ans = "";
 let ins = "";
-const ans = [];
+// let ans = "";
 /** 특수 값 */
 const back = "BACKSPACE";
 const enter = "ENTER";
@@ -47,6 +47,16 @@ function inputAlpha(key, code, cur_idx) {
   }
   return false;
 }
+
+// async function returnTime() {
+//   fetch("/rank",{
+//     method: 'POST',
+//     body: {
+//       time:
+//     }
+//   })
+// }
+
 function isEnter(key) {
   if (key === "ENTER" && index === maxCol) {
     total += index;
@@ -65,22 +75,18 @@ function isDelete(key, cur_idx) {
   }
   return false;
 }
-async function returnResult(inputs) {
-  const result = [];
-  let answer;
-  if (ans.length === 0) {
-    const res = await fetch("/answer");
-    answer = await res.json();
-    ans.push(answer);
-  } else {
-    answer = ans[0];
-  }
+async function getAnswer() {
+  const res = await fetch("/answer");
+  answer = await res.json();
+  ans = answer;
+}
 
-  console.log(answer, inputs);
+function returnResult(inputs) {
+  const result = [];
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i] === answer[i]) {
+    if (inputs[i] === ans[i]) {
       result.push(correct);
-    } else if (answer.includes(inputs[i])) {
+    } else if (ans.includes(inputs[i])) {
       result.push(contain);
     } else {
       result.push(notExist);
@@ -135,6 +141,11 @@ function alertMessage(bool) {
   }, 100);
   return;
 }
+getAnswer()
+  .then((res) => {})
+  .catch((err) => {
+    ans = "RAMEN";
+  });
 
 const app = () => {
   const startTimer = () => {
@@ -195,22 +206,19 @@ const app = () => {
       return;
     }
     if (isEnter(key)) {
-      returnResult(ins)
-        .then((res) => {
-          const result = res;
-          if (changeCss(result)) {
-            alertMessage(true);
-            document.querySelector("main").classList.add("success");
-            gameover(intervalId);
-            return;
-          }
-          if (total === maxIndex) {
-            alertMessage(false);
-            gameover(intervalId);
-            return;
-          }
-        })
-        .catch();
+      const result = returnResult(ins);
+      console.log(result);
+      if (changeCss(result)) {
+        alertMessage(true);
+        document.querySelector("main").classList.add("success");
+        gameover(intervalId);
+        return;
+      }
+      if (total === maxIndex) {
+        alertMessage(false);
+        gameover(intervalId);
+        return;
+      }
     }
     if (isDelete(key, cur_idx)) {
       return;
