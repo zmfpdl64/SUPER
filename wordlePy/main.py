@@ -8,8 +8,8 @@ app.mount("/wordle", StaticFiles(directory="../wordleJS", html=True), name="word
 app.mount("/carret", StaticFiles(directory="../carretUI", html=True), name="carret")
 
 
-# arr = ["RAMEN","APPLE", "COLOR", "BACKE", "FRONT"]
-arr = ["CRAZY"]
+arr = ["RAMEN","APPLE", "COLOR", "BACKE", "FRONT"]
+# arr = ["ASYNC"]
 
 @app.get("/answer")
 def returnAnswer():
